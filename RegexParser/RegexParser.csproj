@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>stryker.regex-parser</PackageId>
+    <PackageId>Stryker.Regex.Parser</PackageId>
     <AssemblyName>RegexParser</AssemblyName>
     <Version>0.5.1</Version>
     <AssemblyVersion>0.5.1</AssemblyVersion>
