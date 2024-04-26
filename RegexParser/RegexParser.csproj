@@ -5,14 +5,20 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>RegexParser</PackageId>
+    <PackageId>Stryker.Regex.Parser</PackageId>
     <AssemblyName>RegexParser</AssemblyName>
     <Version>0.5.1</Version>
     <AssemblyVersion>0.5.1</AssemblyVersion>
     <Authors>Pim Rheiter</Authors>
     <Description>A regular expression parser creating a tree of regular expression nodes.</Description>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Company>Info Support B.V.</Company>
+    <RepositoryUrl>https://github.com/stryker-mutator/dotnet-regex-parser</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
-  
+
+  <ItemGroup>
+    <None Include="..\LICENSE" Pack="true" PackagePath="" Visible="false" />
+  </ItemGroup>
+
 </Project>
