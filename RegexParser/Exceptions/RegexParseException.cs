@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace RegexParser.Exceptions
 {
-    [Serializable]
     public class RegexParseException : ArgumentException
     {
         public RegexParseError Error { get; }
@@ -19,11 +18,6 @@ namespace RegexParser.Exceptions
         {
             Error = error;
             Offset = offset;
-        }
-
-        protected RegexParseException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
         }
     }
 }

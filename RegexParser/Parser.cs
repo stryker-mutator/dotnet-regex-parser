@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using RegexParseError = RegexParser.Exceptions.RegexParseError;
+using RegexParseException = RegexParser.Exceptions.RegexParseException;
 
 namespace RegexParser
 {

@@ -7,9 +7,9 @@ namespace RegexParser.Exceptions
     {
 		[Description("Internal error while parsing regex")]
 		InternalError,
-		[Description("Not enough closing paretheses ).")]
+		[Description("Not enough closing parentheses ).")]
 		NotEnoughParentheses,
-		[Description("Too many closing paretheses ).")]
+		[Description("Too many closing parentheses ).")]
 		TooManyParentheses,
 		[Description("Unterminated character class [].")]
 		UnterminatedCharacterClass,
