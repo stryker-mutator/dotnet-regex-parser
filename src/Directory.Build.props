@@ -1,0 +1,25 @@
+<Project>
+
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <DisableImplicitLibraryPacksFolder>true</DisableImplicitLibraryPacksFolder>
+    <NetCoreTargetingPackRoot>[UNDEFINED]</NetCoreTargetingPackRoot>
+    <RestoreLockedMode Condition="'$(RestoreLockedMode)' == 'true'">true</RestoreLockedMode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <!-- Disable the normal search path mechanism -->
+  <PropertyGroup>
+    <TargetFrameworkRootPath Condition="'$(BuildingInsideVisualStudio)'!='true'">[UNDEFINED]</TargetFrameworkRootPath>
+  </PropertyGroup>
+  <Target Name="CheckTargetFrameworkRootPath" BeforeTargets="GetReferenceAssemblyPaths" Condition="'$(BuildingInsideVisualStudio)'!='true'">
+    <Warning
+      Condition="'$(TargetFrameworkRootPath)' == '[UNDEFINED]' and '$(TargetFrameworkIdentifier)' == '.NETFramework'"
+      Text="Error, TargetFrameworkRootPath not initialized. If you're building for net462 or any other version of desktop NETFramework, please reference the 'Microsoft.NETFramework.ReferenceAssemblies' nuget package and run restore on the project to fix up your framework reference paths." />
+  </Target>
+</Project>
