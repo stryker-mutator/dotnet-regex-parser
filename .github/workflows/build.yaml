@@ -1,7 +1,13 @@
 name: build and test
 run-name: build and test ${{ github.head_ref }}
 
-on: [pull_request]
+on: 
+  push:
+    branches:
+    - master
+  pull_request: {}
+  schedule:
+    - cron: "5 4 * * *"
 
 env:
   RestoreLockedMode: true
