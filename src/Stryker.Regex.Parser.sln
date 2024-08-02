@@ -1,11 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryker.Regex.Parser", "Stryker.Regex.Parser\Stryker.Regex.Parser.csproj", "{4490DB22-1DD5-429E-AF30-3B07658CEBD3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryker.Regex.Parser.UnitTest", "Stryker.Regex.Parser.UnitTest\Stryker.Regex.Parser.UnitTest.csproj", "{5EE72867-6CEE-4796-A564-3B13690351A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{AF7FDAC7-1D16-4575-9A38-714AB91ECE21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{AF7FDAC7-1D16-4575-9A38-714AB91ECE21}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build.yaml = ..\.github\workflows\build.yaml
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		..\.github\renovate.json = ..\.github\renovate.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
