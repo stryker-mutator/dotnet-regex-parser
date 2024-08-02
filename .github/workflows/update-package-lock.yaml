@@ -8,6 +8,7 @@ env:
 
 jobs:
   update-package-lock:
+    if: ${{ startsWith(github.head_ref, 'renovate/') }}
     runs-on: ubuntu-latest
     defaults:
       run:
