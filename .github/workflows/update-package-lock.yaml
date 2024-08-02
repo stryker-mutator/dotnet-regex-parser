@@ -28,5 +28,11 @@ jobs:
           git config --global user.email "renovatebot@stryker-mutator.io"
           git config --global user.name "renovatebot"
           git add -u .
-          git commit -m "Update package lock files"
-          git push
+          set +e  # Disable errors for grep
+          git status | grep modified
+          set -e # Enable errors
+          if [ $? -eq 0 ]
+          then
+            git commit -m "Update package lock files"
+            git push
+          fi;
