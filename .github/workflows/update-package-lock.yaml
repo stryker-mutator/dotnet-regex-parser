@@ -1,0 +1,30 @@
+name: build and test
+run-name: build and test ${{ github.head_ref }}
+
+on: [pull_request]
+
+env:
+  RestoreLockedMode: false
+
+jobs:
+  update-package-lock:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: Update package lock files
+        run: |
+          git checkout $GITHUB_HEAD_REF
+          dotnet restore --force-evaluate
+      - name: Update branch
+        run: |
+          git config --global user.email "renovatebot@stryker-mutator.io"
+          git config --global user.name "renovatebot"
+          git add -u .
+          git commit -m "Update package lock files"
+          git push
