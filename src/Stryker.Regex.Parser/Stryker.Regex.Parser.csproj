@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Stryker.Regex.Parser</PackageId>
+    <AssemblyName>Stryker.Regex.Parser</AssemblyName>
+    <Version>0.5.1</Version>
+    <Authors>Pim Rheiter, Rouke Broersma</Authors>
+    <Description>A regular expression parser creating a tree (AST) of regular expression nodes.</Description>
+    <PackageProjectUrl>https://stryker-mutator.io/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/stryker-mutator/dotnet-regex-parser</RepositoryUrl>
+    <PackageIcon>stryker-80x80.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" Visible="false" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="" Visible="false" />
+    <None Include="..\..\stryker-80x80.png" Pack="true" PackagePath="" Visible="false" />
+  </ItemGroup>
+
+</Project>
