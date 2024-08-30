@@ -40,11 +40,11 @@ jobs:
   release:
     needs: build-and-test
     runs-on: ubuntu-latest
-    if: github.ref_name == github.event.repository.default_branch
-    # environment: production
-    # concurrency:
-    #   group: nuget
-    #   cancel-in-progress: true
+    # if: github.ref_name == github.event.repository.default_branch
+    environment: production
+    concurrency:
+      group: nuget
+      cancel-in-progress: true
     steps:
       - uses: actions/download-artifact@v4
         with:
