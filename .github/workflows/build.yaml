@@ -8,6 +8,8 @@ on:
   pull_request: {}
   schedule:
     - cron: "5 4 * * *"
+  workflow_dispatch:
+
 
 env:
   RestoreLockedMode: true
@@ -26,7 +28,7 @@ jobs:
       - name: Build and test
         run: dotnet test
       - name: Nuget pack
-        run: dotnet pack ${{ github.workspace }}/src/Stryker.Regex.Parser/Stryker.Regex.Parser.csproj --output ${{ github.workspace }}/publish
+        run: dotnet pack Stryker.Regex.Parser/Stryker.Regex.Parser.csproj --output ${{ github.workspace }}/publish
       - name: Upload pipeline artifact
         uses: actions/upload-artifact@v4
         with:
@@ -34,3 +36,17 @@ jobs:
           path: |
              ${{ github.workspace }}/publish
           retention-days: 15
+
+  release:
+    runs-on: ubuntu-latest
+    # if: github.ref_name == github.event.repository.default_branch
+    # environment: production
+    # concurrency:
+    #   group: nuget
+    #   cancel-in-progress: true
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: nuget
+      - name: Display structure of downloaded files
+        run: ls -R
