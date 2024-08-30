@@ -41,7 +41,7 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     # if: github.ref_name == github.event.repository.default_branch
-    environment: production
+    environment: nuget
     concurrency:
       group: nuget
       cancel-in-progress: true
