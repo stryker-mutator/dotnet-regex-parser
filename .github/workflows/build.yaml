@@ -1,5 +1,5 @@
-name: build and test
-run-name: build and test ${{ github.head_ref }}
+name: cicd
+run-name: ubuntu ${{ github.head_ref }}
 
 on: 
   push:
@@ -8,6 +8,7 @@ on:
   pull_request: {}
   schedule:
     - cron: "5 4 * * *"
+  workflow_dispatch:
 
 env:
   RestoreLockedMode: true
@@ -25,3 +26,32 @@ jobs:
           dotnet-version: 8.x
       - name: Build and test
         run: dotnet test
+      - name: Nuget pack
+        run: dotnet pack Stryker.Regex.Parser/Stryker.Regex.Parser.csproj --output ${{ github.workspace }}/publish
+      - name: Upload pipeline artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget
+          path: |
+             ${{ github.workspace }}/publish
+          retention-days: 15
+
+  release:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref_name == github.event.repository.default_branch
+    environment: nuget
+    concurrency:
+      group: nuget
+      cancel-in-progress: true
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: nuget
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: Nuget push
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ${{ github.workspace }}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY
