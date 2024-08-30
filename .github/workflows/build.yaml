@@ -1,5 +1,5 @@
-name: build and test
-run-name: build and test ${{ github.head_ref }}
+name: cicd
+run-name: ubuntu ${{ github.head_ref }}
 
 on: 
   push:
@@ -9,7 +9,6 @@ on:
   schedule:
     - cron: "5 4 * * *"
   workflow_dispatch:
-
 
 env:
   RestoreLockedMode: true
@@ -49,5 +48,10 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: nuget
-      - name: Display structure of downloaded files
-        run: ls -R
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: Nuget push
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ${{ github.workspace }}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY
