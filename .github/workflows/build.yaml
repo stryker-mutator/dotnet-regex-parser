@@ -32,5 +32,5 @@ jobs:
         with:
           name: nuget
           path: |
-            --output ${{ github.workspace }}/publish/*
+             ${{ github.workspace }}/publish
           retention-days: 15
